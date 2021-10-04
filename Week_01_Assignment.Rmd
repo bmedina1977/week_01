@@ -12,36 +12,67 @@ knitr::opts_chunk$set(echo = TRUE)
 1.  Explain coercion rules. Create an example that demonstrates the fixed order of the coercion rules.
 
 ```{r}
+# If you call a function with an argument of a wrong type, R will coerce values to a different type so that the function will work.
 
+c(1.5, "3") will bring the results c("1.5", "3")
 ```
 
 2.  The following code will generate a warning. Explain why.
 
+It is not displayed as proper numbers. It should read as.integer(c("1", "2", "3"))
+
 ```{r}
 as.integer(c("one", "two", "three"))
+```
+```{r}
+as.integer(c("1", "2", "3"))
 ```
 
 3.  Create a vector of a sequence of integers starting at 2, ending at 100, and increasing by 2. Assign the vector to an object called `evens`. Coerce the vector to be of type `integer`. Confirm that the vector is of type `integer`.
 
 ```{r}
+Evens = seq(from = 2, 
+    to = 100, 
+    by = 2) 
+
 
 ```
+
+```{r}
+Evens = as.integer(Evens)
+```
+
+```{r}
+is.integer(Evens)
+```
+
 
 4.  Create a vector of random numbers with a length equal to your vector in exercise 3. Use a seed with a value of 730 before creating your vector. Assign the vector to an object called `randoms`. Confirm the type of the vector.
 
 ```{r}
+set.seed(730)
+randoms <- runif(n = 50, min = 0, max = 730) 
 
 ```
+```{r}
+is.numeric(randoms)
+```
+
 
 5.  Create a vector demonstrating which values in exercise 3 are greater than `0.75`. Assign the vector to an object called `logicals`. Confirm the type of the vector.
 
 ```{r}
+logicals <- randoms > 0.75
 
+``` 
+```{r}
+is.logical(logicals)
 ```
 
 6.  Create a data frame including the three vectors created in exercises 3 through 5. Assign it to an object following best practices for naming.
 
 ```{r}
+dataframe1 <- data.frame(randoms,Evens,logicals)
 
 ```
 
@@ -49,12 +80,31 @@ as.integer(c("one", "two", "three"))
 
 ```{r}
 
+Sum <- c(Evens, randoms)/3
+
+
 ```
+
+```{r}
+mean(randoms)
+median(randoms)
+min(randoms)
+max(randoms)
+sd(randoms)
+var(randoms)
+```
+
+
 
 8.  We discussed the idea that R is a "vectorized" language. Explain this concept. Why is it important?
 
+Vectorized languages use vectors and arrays. It allows you to write code that is easy to read
+
+
+
+
 9.  Run the `sessionInfo` function in a chunk.
-
 ```{r}
-
+`sessionInfo`
 ```
+
